@@ -15,7 +15,9 @@
                 Текст
             </th>
             <th scope="col">
-                Marked
+                <a href="/?page={{ $meta['current_page'] }}&orderBy=marked_at&direction={{ $meta['orderBy'] == 'marked_at' ? $meta['direction'] ==  'asc' ? 'desc' : 'asc' : 'asc' }}" style="color: white">
+                    Marked
+                </a>
             </th>
         </tr>
         </thead>

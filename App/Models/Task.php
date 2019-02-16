@@ -49,7 +49,7 @@ class Task
             $direction = $data['direction'];
         }
 
-        if (key_exists('orderBy', $data) && in_array($data['orderBy'], ['id', 'name', 'email'])) {
+        if (key_exists('orderBy', $data) && in_array($data['orderBy'], ['id', 'name', 'email', 'marked_at'])) {
             $orderBy = $data['orderBy'];
         }
 
