@@ -32,6 +32,17 @@
                   required>{{ isset($task) ? $task->text : '' }}</textarea>
     </div>
 
+    @if(isset($task))
+        <div class="form-group">
+            <div class="form-check">
+                <input name="marked" class="form-check-input" type="checkbox" {{ $task->marked_at ? 'checked' : '' }} id="marked">
+                <label class="form-check-label" for="marked">
+                    Задание выполнено
+                </label>
+            </div>
+        </div>
+    @endif
+
 
     <button type="submit" class="btn btn-primary">
         {{ isset($task) ? 'Обновить' : 'Добавить' }}

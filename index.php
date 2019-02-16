@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 define("__APP__", __DIR__);
 
 require_once __APP__ . '/Kernel/bootstrap.php';

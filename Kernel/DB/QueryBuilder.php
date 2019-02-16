@@ -17,6 +17,11 @@ class QueryBuilder
         $this->pdo = $pdo;
     }
 
+    public function pdo()
+    {
+        return $this->pdo;
+    }
+
     public function query($q, $params = [])
     {
         $statement = $this->pdo->prepare($q);

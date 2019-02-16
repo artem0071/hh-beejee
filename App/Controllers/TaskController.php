@@ -11,18 +11,29 @@ class TaskController
 
     public function index()
     {
-        echo view('page.tasks');
+        $tasks = Task::paginate(App::$Router->data);
+
+        echo view('page.tasks', [
+            'tasks' => $tasks['data'],
+            'meta' => $tasks['meta']
+        ]);
     }
 
     public function store()
     {
         $validated = App::$Router->checkData(['name', 'email', 'text']);
 
-        header('Location: /tasks/' . Task::store($validated));
+        Task::store($validated);
+
+        go('/');
     }
 
     public function show($params)
     {
+        if (! $_SESSION['is_auth']) {
+            go('/login');
+        }
+
         $data = App::$Router->data;
 
         echo view('page.task', [
@@ -33,18 +44,28 @@ class TaskController
 
     public function update($params)
     {
+        if (! $_SESSION['is_auth']) {
+            go('/login');
+        }
+
         $taskId = $params[0];
 
-        Task::findOrFail($taskId);
+        $task = Task::findOrFail($taskId);
 
-        Task::update($taskId, App::$Router->checkData(['text']));
+        $data = App::$Router->checkData(['text']);
 
-        header('Location: /tasks/' . $taskId . '?status=updated');
+        $isMarked = key_exists('marked', App::$Router->data);
+
+        if ($task->marked_at && !$isMarked) {
+            $data['marked_at'] = null;
+        }
+
+        if (!$task->marked_at && $isMarked) {
+            $data['marked_at'] = date("Y-m-d H:i:s");
+        }
+
+        Task::update($taskId, $data);
+
+        go('/tasks/' . $taskId . '?status=updated');
     }
-
-    public function destroy()
-    {
-
-    }
-
 }

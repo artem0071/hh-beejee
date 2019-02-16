@@ -2,21 +2,19 @@
 
 @section('content')
 
-    <div class="p-4">
+    <div class="p-2">
 
         <div class="card">
             <div class="card-header">
                 <h3 class="text-center">Все задачи</h3>
             </div>
             <div class="card-body">
-                @include('page.tasks.list')
+                @include('page.task.list')
 
-                <div class="d-flex justify-content-center">
-                    @include('component.pagination')
-                </div>
+                @include('component.pagination')
             </div>
             <div class="card-footer">
-                @include('page.taskForm')
+                @include('page.task.form')
             </div>
         </div>
     </div>

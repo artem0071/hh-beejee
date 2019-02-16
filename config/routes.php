@@ -20,5 +20,15 @@ return [
         'pattern' => 'tasks/(\d+)',
         'method' => 'POST',
         'controller' => 'TaskController@update'
+    ],
+    [
+        'pattern' => 'login',
+        'method' => 'GET',
+        'controller' => 'AuthController@showForm'
+    ],
+    [
+        'pattern' => 'login',
+        'method' => 'POST',
+        'controller' => 'AuthController@login'
     ]
 ];
